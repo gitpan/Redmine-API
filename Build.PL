@@ -22,7 +22,7 @@ my %module_build_args = (
     "celogeek <me\@celogeek.com>"
   ],
   "dist_name" => "Redmine-API",
-  "dist_version" => "0.01",
+  "dist_version" => "0.02",
   "license" => "perl",
   "module_name" => "Redmine::API",
   "recommends" => {},
@@ -33,6 +33,7 @@ my %module_build_args = (
     "JSON::XS" => 0,
     "Moo" => 0,
     "Net::HTTP::Spore" => 0,
+    "Net::HTTP::Spore::Middleware::Header" => 0,
     "perl" => "5.006",
     "strict" => 0,
     "vars" => 0,

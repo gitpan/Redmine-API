@@ -12,7 +12,7 @@ package Redmine::API;
 
 use strict;
 use warnings;
-our $VERSION = '0.01';    # VERSION
+our $VERSION = '0.02';    # VERSION
 use Data::Dumper;
 use Carp;
 
@@ -53,7 +53,7 @@ Redmine::API - Communicate with Redmine thought the API
 
 =head1 VERSION
 
-version 0.01
+version 0.02
 
 =head1 SYNOPSIS
 

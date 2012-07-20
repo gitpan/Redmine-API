@@ -11,12 +11,13 @@ package Redmine::API::Action;
 # ABSTRACT: Action to the API
 use strict;
 use warnings;
-our $VERSION = '0.01';    # VERSION
+our $VERSION = '0.02';    # VERSION
 use Moo;
 use Carp;
 use Data::Dumper;
 
 use Net::HTTP::Spore;
+use Net::HTTP::Spore::Middleware::Header;
 use JSON::XS;
 
 has 'request' => (
@@ -92,12 +93,28 @@ sub _build__spore {
         base_url => $api->base_url,
         trace    => $api->trace
     );
-    $spore->enable('Format::JSON');
     $spore->enable(
         'Auth::Header',
         header_name  => 'X-Redmine-API-Key',
         header_value => $api->auth_key,
     );
+
+    #json for all in and out
+    $spore->enable(
+        'Header',
+        header_name  => 'Content-Type',
+        header_value => 'application/json',
+    );
+    $spore->enable(
+        'Header',
+        header_name  => 'Accept',
+        header_value => 'application/json',
+    );
+
+    #serialize for create (post) and get
+    #delete / update (put) don t send data
+    $spore->enable_if( sub { $_[0]->method =~ /^GET|POST$/x },
+        'Format::JSON' );
 
     return $spore;
 }
@@ -126,7 +143,7 @@ sub update {
     my ( $self, $id, %data ) = @_;
     return $self->_spore->update(
         id      => $id,
-        payload => { $self->action => \%data }
+        payload => encode_json( { $self->action => \%data } )
     );
 }
 1;
@@ -140,7 +157,7 @@ Redmine::API::Action - Action to the API
 
 =head1 VERSION
 
-version 0.01
+version 0.02
 
 =head1 METHODS
 
