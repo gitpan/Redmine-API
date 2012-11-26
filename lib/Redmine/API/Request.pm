@@ -11,7 +11,7 @@ package Redmine::API::Request;
 # ABSTRACT: handle request to the Redmine API
 use strict;
 use warnings;
-our $VERSION = '0.02';    # VERSION
+our $VERSION = '0.03';    # VERSION
 use Carp;
 use Data::Dumper;
 
@@ -44,6 +44,7 @@ has 'route' => (
 1;
 
 __END__
+
 =pod
 
 =head1 NAME
@@ -52,12 +53,12 @@ Redmine::API::Request - handle request to the Redmine API
 
 =head1 VERSION
 
-version 0.02
+version 0.03
 
 =head1 BUGS
 
 Please report any bugs or feature requests on the bugtracker website
-https://github.com/celogeek/Redmine-API/issues
+http://tasks.celogeek.com/projects/perl-modules-redmine-api
 
 When submitting a bug or request, please include a test-file or a
 patch to an existing test-file that illustrates the bug or desired
@@ -75,4 +76,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
