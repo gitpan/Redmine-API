@@ -4,7 +4,7 @@ Redmine::API - Communicate with Redmine thought the API
 
 # VERSION
 
-version 0.03
+version 0.04
 
 # SYNOPSIS
 
@@ -15,7 +15,6 @@ version 0.03
     #{time_entry => {issue_id => 3, activity_id => 9, hours => 1, comments => 'test'}} in JSON format
     $c->time_entries->time_entry->create(issue_id => 3, activity_id => 9, hours => 1, comments => 'test');
     
-
     #to get all time_entries
     $c->time_entries->list->all();
     #note that "list" is useless in that case, you can also use time_entry
@@ -33,9 +32,7 @@ version 0.03
 
 Redmine::API is a module to communicate with Redmine thought the REST::Api.
 
-It use [Net::HTTP::Spore](http://search.cpan.org/perldoc?Net::HTTP::Spore) and generate spec on the fly that matching your need.
-
-Any result will be a spore object, with body and headers.
+Any result will be a perl HASH, transformation of the json response into a perl HASH.
 
 # NOTES
 
@@ -48,7 +45,7 @@ So you need to know it before sending something. You can also set it by default 
 
 The complete doc of the REST API is here :
 
-[http://www.redmine.org/projects/redmine/wiki/Rest\_api](http://www.redmine.org/projects/redmine/wiki/Rest\_api)
+[http://www.redmine.org/projects/redmine/wiki/Rest_api](http://www.redmine.org/projects/redmine/wiki/Rest_api)
 
 If the API say : "GET /projects.xml" to get all project, you can do :
 
@@ -58,14 +55,10 @@ If the API say : "GET /projects/:id.:format", you can do :
 
     $c->projects->project->get(1);
 
-# SEE ALSO
-
-[App::Redmine](http://search.cpan.org/perldoc?App::Redmine)
-
 # BUGS
 
 Please report any bugs or feature requests on the bugtracker website
-http://tasks.celogeek.com/projects/perl-modules-redmine-api
+https://github.com/celogeek/Redmine-API/issues
 
 When submitting a bug or request, please include a test-file or a
 patch to an existing test-file that illustrates the bug or desired
@@ -77,7 +70,7 @@ celogeek <me@celogeek.com>
 
 # COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2012 by celogeek <me@celogeek.com>.
+This software is copyright (c) 2014 by celogeek <me@celogeek.com>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
